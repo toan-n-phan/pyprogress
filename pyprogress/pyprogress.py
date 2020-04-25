@@ -38,7 +38,7 @@ class ProgressBar:
 
     @property 
     def current_percent(self) -> float:
-        return int(100 * self.current_value / self.max_value)
+        return min(100, int(100 * self.current_value / self.max_value))
 
     @property
     def time_elapsed_secs(self) -> int:
@@ -59,3 +59,6 @@ class ProgressBar:
             self.time_elapsed_secs
         )
         writer.overwrite(sys.stdout, line)
+
+        if self.current_percent == 100:
+            sys.stdout.write('  Done.\n')
