@@ -12,6 +12,7 @@ def main():
         random_secs = (random.random()) / 10
         time.sleep(random_secs)
     bar.set_progress(100)
+    # print('  Done.')
 
 if __name__ == "__main__":
     main()
