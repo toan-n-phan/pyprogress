@@ -3,7 +3,8 @@ from __future__ import annotations
 import sys
 import time
 
-import writer
+from . import writer
+from .theme import Theme
 
 class ProgressBar:
     """A class for representing the state of the progressbar.
@@ -30,6 +31,7 @@ class ProgressBar:
 
     def set_progress(self, value: int) -> None:
         self._set_progress(value)
+        self._render()
 
     def _set_progress(self, value: int) -> None:
         self.current_value = value
@@ -57,11 +59,3 @@ class ProgressBar:
             self.time_elapsed_secs
         )
         writer.overwrite(sys.stdout, line)
-        # print(line, end='')
-        # print('033[2J', end='')
-        print(f'\033[{5}C', end='')
-    
-class Theme:
-    def __init__(self):
-        self.progress_char = '█'
-        self.padding_char = ' '
